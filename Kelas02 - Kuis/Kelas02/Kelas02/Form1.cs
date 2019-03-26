@@ -18,74 +18,64 @@ namespace Kelas02
             InitializeComponent();
         }
 
-        Bitmap bmpAsli, bmpHasil;
-
-        private void buttonT_Click(object sender, EventArgs e)
-        {
-            bmpAsli = (Bitmap)pictureAsli.Image;
-            bmpHasil = (Bitmap)pictureHasil.Image;
-
-            ThresholdingViaPointer(bmpHasil);
-            pictureHasil.Image = bmpHasil;
-        }
-
-        private void ThresholdingViaPointer(Bitmap bmpHasil)
-        {
-            BitmapData bmData = bmpAsli.LockBits(new Rectangle(0, 0, bmpHasil.Width, bmpHasil.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            unsafe
-            {
-                int nOffset = bmData.Stride - bmData.Width * 3, nVal;
-                int nWidth = bmData.Width * 3;
-                int nThresholding = Convert.ToInt16(textBox1.Text);
-
-                byte* p = (byte*)bmData.Scan0.ToPointer();
-                for (int y = 0; y < bmData.Height; ++y)
-                {
-                    for (int x = 0; x < nWidth; ++x)
-                    {
-                        nVal = p[0];
-                        if (nVal < nThresholding) nVal = 0;
-                        if (nVal > nThresholding) nVal = 255;
-
-                        p[0] = (byte)nVal;
-                        ++p;
-                    }
-                    p += nOffset;
-                }
-                bmpHasil.UnlockBits(bmData);
-            }
-        }
+        Bitmap result, process;
+        int thresMin;
+        double eucMin;
 
         private void buttonE_Click(object sender, EventArgs e)
         {
-            bmpAsli = (Bitmap)pictureAsli.Image;
-            bmpHasil = (Bitmap)pictureHasil.Image;
-            
-            if (bmpAsli.Width == bmpHasil.Width && bmpAsli.Height == bmpHasil.Height)
+            process = new Bitmap(pictureAsli.Image);
+            result = new Bitmap(pictureHasil.Image);
+            int thres = Convert.ToInt16(textBoxT.Text);
+            int i, j, k, l;
+            double jarak, hasil, sum = 0;
+
+            Cursor = Cursors.WaitCursor;
+
+            //Grayscale Perataan
+            for (i = 0; i < 1881; i++)
             {
-                for (int i = 0; i < bmpAsli.Width; i++)
+                for (j = 0; j < 455; j++)
                 {
-                    for (int j = 0; j < bmpAsli.Height; j++)
-                    {
-                        pictureAsli = bmpAsli.GetPixel(i, j).ToString();
-                        pictureHasil = bmpHasil.GetPixel(i, j).ToString();
-                        if (img1_ref != img2_ref)
-                        {
-                            count2++;
-                            flag = false;
-                            break;
-                        }
-                        count1++;
-                    }
+                    k = (process.GetPixel(i, j).R + process.GetPixel(i, j).G + process.GetPixel(i, j).B) / 3;
+                    process.SetPixel(i, j, Color.FromArgb(k, k, k));
                 }
-                if (flag == false)
-                    MessageBox.Show("Sorry, Images are not same , " + count2 + " wrong pixels found");
-                else
-                    MessageBox.Show(" Images are same , " + count1 + " same pixels found and " + count2 + " wrong pixels found");
             }
-            else
-                MessageBox.Show("can not compare this images");
-            this.Dispose();
+
+            //Normal Threshold
+            for (i = 0; i < 1881; i++)
+            {
+                for (j = 0; j < 455; j++)
+                {
+                    k = process.GetPixel(i, j).R;
+                    if (k >= thres)
+                        l = 255;
+                    else
+                        l = 0;
+                    process.SetPixel(i, j, Color.FromArgb(l, l, l));
+                }
+            }
+
+            //Euclidean
+            for (i = 0; i < 1881; i++)
+            {
+                for (j = 0; j < 455; j++)
+                {
+                    jarak = Math.Pow(process.GetPixel(i, j).R - result.GetPixel(i, j).R, 2);
+                    sum = sum + jarak;
+                }
+            }
+
+            pictureHasil.Image = process;
+
+            hasil = Math.Sqrt(sum);
+            textBoxE.Text = hasil.ToString();
+            
+            thresMin = thres;
+            eucMin = hasil;
+            textBoxS.Text = eucMin.ToString();
+
+            Cursor = Cursors.Default;
         }
     }
 }
