@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.btnProcess = new System.Windows.Forms.Button();
+            this.buttonScale = new System.Windows.Forms.Button();
+            this.buttonShear = new System.Windows.Forms.Button();
+            this.buttonTranslate = new System.Windows.Forms.Button();
+            this.buttonReflect = new System.Windows.Forms.Button();
+            this.btnRotate = new System.Windows.Forms.Button();
             this.radYRef = new System.Windows.Forms.RadioButton();
             this.radXRef = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -73,17 +77,22 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(35, 30);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(450, 432);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnReset);
-            this.groupBox1.Controls.Add(this.btnChange);
-            this.groupBox1.Controls.Add(this.btnProcess);
+            this.groupBox1.Controls.Add(this.buttonScale);
+            this.groupBox1.Controls.Add(this.buttonShear);
+            this.groupBox1.Controls.Add(this.buttonTranslate);
+            this.groupBox1.Controls.Add(this.buttonReflect);
+            this.groupBox1.Controls.Add(this.btnRotate);
             this.groupBox1.Controls.Add(this.radYRef);
             this.groupBox1.Controls.Add(this.radXRef);
             this.groupBox1.Controls.Add(this.label11);
@@ -121,33 +130,63 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(770, 305);
+            this.btnReset.Location = new System.Drawing.Point(776, 333);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(130, 77);
-            this.btnReset.TabIndex = 31;
+            this.btnReset.Size = new System.Drawing.Size(124, 54);
+            this.btnReset.TabIndex = 34;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnChange
+            // buttonScale
             // 
-            this.btnChange.Location = new System.Drawing.Point(475, 305);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(130, 77);
-            this.btnChange.TabIndex = 30;
-            this.btnChange.Text = "Change Picture";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.buttonScale.Location = new System.Drawing.Point(475, 333);
+            this.buttonScale.Name = "buttonScale";
+            this.buttonScale.Size = new System.Drawing.Size(124, 54);
+            this.buttonScale.TabIndex = 33;
+            this.buttonScale.Text = "Scale";
+            this.buttonScale.UseVisualStyleBackColor = true;
+            this.buttonScale.Click += new System.EventHandler(this.buttonScale_Click);
             // 
-            // btnProcess
+            // buttonShear
             // 
-            this.btnProcess.Location = new System.Drawing.Point(621, 305);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(130, 77);
-            this.btnProcess.TabIndex = 29;
-            this.btnProcess.Text = "Process";
-            this.btnProcess.UseVisualStyleBackColor = true;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            this.buttonShear.Location = new System.Drawing.Point(625, 333);
+            this.buttonShear.Name = "buttonShear";
+            this.buttonShear.Size = new System.Drawing.Size(124, 54);
+            this.buttonShear.TabIndex = 32;
+            this.buttonShear.Text = "Shear";
+            this.buttonShear.UseVisualStyleBackColor = true;
+            this.buttonShear.Click += new System.EventHandler(this.buttonShear_Click);
+            // 
+            // buttonTranslate
+            // 
+            this.buttonTranslate.Location = new System.Drawing.Point(776, 261);
+            this.buttonTranslate.Name = "buttonTranslate";
+            this.buttonTranslate.Size = new System.Drawing.Size(124, 54);
+            this.buttonTranslate.TabIndex = 31;
+            this.buttonTranslate.Text = "Translate";
+            this.buttonTranslate.UseVisualStyleBackColor = true;
+            this.buttonTranslate.Click += new System.EventHandler(this.buttonTranslate_Click);
+            // 
+            // buttonReflect
+            // 
+            this.buttonReflect.Location = new System.Drawing.Point(625, 261);
+            this.buttonReflect.Name = "buttonReflect";
+            this.buttonReflect.Size = new System.Drawing.Size(124, 54);
+            this.buttonReflect.TabIndex = 30;
+            this.buttonReflect.Text = "Reflect";
+            this.buttonReflect.UseVisualStyleBackColor = true;
+            this.buttonReflect.Click += new System.EventHandler(this.buttonReflect_Click);
+            // 
+            // btnRotate
+            // 
+            this.btnRotate.Location = new System.Drawing.Point(475, 261);
+            this.btnRotate.Name = "btnRotate";
+            this.btnRotate.Size = new System.Drawing.Size(124, 54);
+            this.btnRotate.TabIndex = 29;
+            this.btnRotate.Text = "Rotate";
+            this.btnRotate.UseVisualStyleBackColor = true;
+            this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             // 
             // radYRef
             // 
@@ -186,13 +225,17 @@
             this.txtYShear.Name = "txtYShear";
             this.txtYShear.Size = new System.Drawing.Size(72, 35);
             this.txtYShear.TabIndex = 25;
+            this.txtYShear.Text = "2";
             // 
             // trkYShear
             // 
             this.trkYShear.Location = new System.Drawing.Point(621, 201);
+            this.trkYShear.Minimum = 2;
             this.trkYShear.Name = "trkYShear";
             this.trkYShear.Size = new System.Drawing.Size(200, 69);
             this.trkYShear.TabIndex = 24;
+            this.trkYShear.Value = 2;
+            this.trkYShear.Scroll += new System.EventHandler(this.trkYShear_Scroll);
             // 
             // label8
             // 
@@ -209,13 +252,17 @@
             this.txtXShear.Name = "txtXShear";
             this.txtXShear.Size = new System.Drawing.Size(72, 35);
             this.txtXShear.TabIndex = 22;
+            this.txtXShear.Text = "1";
             // 
             // trkXShear
             // 
             this.trkXShear.Location = new System.Drawing.Point(621, 160);
+            this.trkXShear.Minimum = 1;
             this.trkXShear.Name = "trkXShear";
             this.trkXShear.Size = new System.Drawing.Size(200, 69);
             this.trkXShear.TabIndex = 21;
+            this.trkXShear.Value = 1;
+            this.trkXShear.Scroll += new System.EventHandler(this.trkXShear_Scroll);
             // 
             // label9
             // 
@@ -241,13 +288,17 @@
             this.txtYScaling.Name = "txtYScaling";
             this.txtYScaling.Size = new System.Drawing.Size(72, 35);
             this.txtYScaling.TabIndex = 18;
+            this.txtYScaling.Text = "1";
             // 
             // trkYScaling
             // 
             this.trkYScaling.Location = new System.Drawing.Point(171, 346);
+            this.trkYScaling.Minimum = 1;
             this.trkYScaling.Name = "trkYScaling";
             this.trkYScaling.Size = new System.Drawing.Size(200, 69);
             this.trkYScaling.TabIndex = 17;
+            this.trkYScaling.Value = 1;
+            this.trkYScaling.Scroll += new System.EventHandler(this.trkYScaling_Scroll);
             // 
             // label5
             // 
@@ -264,13 +315,17 @@
             this.txtXScaling.Name = "txtXScaling";
             this.txtXScaling.Size = new System.Drawing.Size(72, 35);
             this.txtXScaling.TabIndex = 15;
+            this.txtXScaling.Text = "1";
             // 
             // trkXScaling
             // 
             this.trkXScaling.Location = new System.Drawing.Point(171, 305);
+            this.trkXScaling.Minimum = 1;
             this.trkXScaling.Name = "trkXScaling";
             this.trkXScaling.Size = new System.Drawing.Size(200, 69);
             this.trkXScaling.TabIndex = 14;
+            this.trkXScaling.Value = 1;
+            this.trkXScaling.Scroll += new System.EventHandler(this.trkXScaling_Scroll);
             // 
             // label6
             // 
@@ -296,13 +351,17 @@
             this.txtYTrans.Name = "txtYTrans";
             this.txtYTrans.Size = new System.Drawing.Size(72, 35);
             this.txtYTrans.TabIndex = 11;
+            this.txtYTrans.Text = "0";
             // 
             // trkYTrans
             // 
             this.trkYTrans.Location = new System.Drawing.Point(171, 201);
+            this.trkYTrans.Maximum = 100;
+            this.trkYTrans.Minimum = -100;
             this.trkYTrans.Name = "trkYTrans";
             this.trkYTrans.Size = new System.Drawing.Size(200, 69);
             this.trkYTrans.TabIndex = 10;
+            this.trkYTrans.Scroll += new System.EventHandler(this.trkYTrans_Scroll);
             // 
             // label4
             // 
@@ -319,13 +378,17 @@
             this.txtXTrans.Name = "txtXTrans";
             this.txtXTrans.Size = new System.Drawing.Size(72, 35);
             this.txtXTrans.TabIndex = 8;
+            this.txtXTrans.Text = "0";
             // 
             // trkXTrans
             // 
             this.trkXTrans.Location = new System.Drawing.Point(171, 160);
+            this.trkXTrans.Maximum = 100;
+            this.trkXTrans.Minimum = -100;
             this.trkXTrans.Name = "trkXTrans";
             this.trkXTrans.Size = new System.Drawing.Size(200, 69);
             this.trkXTrans.TabIndex = 7;
+            this.trkXTrans.Scroll += new System.EventHandler(this.trkXTrans_Scroll);
             // 
             // label3
             // 
@@ -348,6 +411,7 @@
             // txtRotation
             // 
             this.txtRotation.Enabled = false;
+            this.txtRotation.HideSelection = false;
             this.txtRotation.Location = new System.Drawing.Point(378, 56);
             this.txtRotation.Name = "txtRotation";
             this.txtRotation.Size = new System.Drawing.Size(72, 35);
@@ -357,9 +421,12 @@
             // trkRotation
             // 
             this.trkRotation.Location = new System.Drawing.Point(171, 56);
+            this.trkRotation.Maximum = 360;
+            this.trkRotation.Minimum = -360;
             this.trkRotation.Name = "trkRotation";
             this.trkRotation.Size = new System.Drawing.Size(200, 69);
             this.trkRotation.TabIndex = 1;
+            this.trkRotation.Scroll += new System.EventHandler(this.trkRotation_Scroll);
             // 
             // label1
             // 
@@ -374,7 +441,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1466, 523);
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(1488, 550);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1466, 494);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
@@ -398,8 +468,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnChange;
-        private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Button btnRotate;
         private System.Windows.Forms.RadioButton radYRef;
         private System.Windows.Forms.RadioButton radXRef;
         private System.Windows.Forms.Label label11;
@@ -426,6 +495,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtRotation;
         private System.Windows.Forms.TrackBar trkRotation;
+        private System.Windows.Forms.Button buttonReflect;
+        private System.Windows.Forms.Button buttonScale;
+        private System.Windows.Forms.Button buttonShear;
+        private System.Windows.Forms.Button buttonTranslate;
         private System.Windows.Forms.Button btnReset;
     }
 }
