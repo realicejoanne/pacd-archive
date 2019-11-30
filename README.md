@@ -2,7 +2,10 @@
 
 This study is a continuous subject from [Computer Graphics study](https://github.com/realicejoanne/grafkom-archive). Digital image processing is the use of computer algorithms to perform image processing on digital images. We are not only processing it but also analysing.
 
-Tools: same as for Computer Graphics study!
+Tools and packages:
+1. Visual Studio 2017 or get the latest one
+2. EmguCV
+3. Luxand
 
 In Digital Image Processing and Analysis, there are several subtopics I learned:
 1. Introduction to Digital Image Processing and Analysis
