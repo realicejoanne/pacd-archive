@@ -1,6 +1,6 @@
 # What is Digital Image Processing and Analysis?
 
-This study is a continuous subject from [Computer Graphics study](https://github.com/realicejoanne/grafkom-archive). Digital image processing is the use of computer algorithms to perform image processing on digital images. We are not only processing it but also analysing.
+This study is a continuous subject from [Computer Graphics study](https://github.com/realicejoanne/grafkom-archive). In computer science, digital image processing is the use of computer algorithms to perform image processing on digital images. We are not only processing it but also analysing.
 
 Tools and packages:
 1. Visual Studio 2017 or get the latest one
